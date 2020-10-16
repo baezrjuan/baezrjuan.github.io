@@ -1,0 +1,66 @@
+
+/*decorate all elements in body*/
+body {
+	font-family:courier;
+	color:white; 
+	text-align: center;
+	background-image: url('../bground.jpg');
+	background-repeat: no-repeat;
+}
+
+#title{
+	margin: auto;
+	font-size:75px; 
+	text-decoration: underline; 
+	background: rgba(0,0,0,0.5); 
+	width: 100%;
+}
+
+#email{
+	font-size:20px; 
+	border: 5px dotted white; 
+	background: rgba(0,0,0,0.5); 
+	margin: auto;
+}
+
+#intro{
+	font-size:15px; 
+	background: rgba(0,0,0,0.5); 
+	margin: auto; 
+	border: 3px solid white;
+}
+
+#projects_title{
+	margin: auto;
+	font-family:courier; 
+	color:black; 
+	font-size:30px; 
+	padding: 20px;
+}
+
+/*Menu class and sub classes for its internal "a" tag link elements.
+The "a.active" class affects the currently active link element,
+ and "a.hover" is for mouseover effects*/
+.menu {
+	width: 200px;
+	margin: auto;
+}
+
+.menu a {
+	background-image: linear-gradient(white, lightgray);
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	display: block;
+	padding: 15px;
+	border: 1px solid black;
+}
+
+.menu a.active {
+	background-image: linear-gradient(#003333, #CCFFCC);
+	color: white;
+}
+
+.menu a:hover {
+	background-color: lightblue;
+}
