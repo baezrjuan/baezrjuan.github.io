@@ -12,14 +12,15 @@
     	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 		<title>Juan Baez HW5</title>
+		<!-- include boostrap -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
     	<link rel="stylesheet" href="index_resources/css/main.css">
 	</head>
 	<!-- Setup body -->
 	<body>
-		<!-- Use .container-fluid for a full width container, spanning the entire width of the viewport.-->
 		<!-- title text -->
 		<div class="row">
+			<!-- text input form for 4 numbers -->
 			<form id="inputs" class="col-lg-12">
 				<b><u>Input 4 numbers:</u></b><br><br>
 				<input type="text" id="num1" placeholder="Enter 1st number"><br><br>
@@ -27,11 +28,14 @@
 				<input type="text" id="num3" placeholder="Enter 3rd number"><br><br>
 				<input type="text" id="num4" placeholder="Enter 4th number"><br><br>
 			</form>
+			<!-- submit button with onclick functionality -->
 			<button id="submit" onclick="submit();">Submit</button>
 		</div>
 		<div class="row">
+			<!-- init multiplication table -->
 			<table id="tbl" class="col-sm-4">
 			  <tr>
+			  	<!-- row 1 table header to display inputted numbers -->
 			  	<th></th>
 			    <th id="tbl_num1_h">Number 1</th>
 			    <th id="tbl_num2_h">Number 2</th>
@@ -39,6 +43,7 @@
 			    <th id="tbl_num4_h">Number 4</th>
 			  </tr>
 			  <tr>
+			  	<!-- 1st row of numbers, 1st column is number from input -->
 			    <td><b><span id="tbl_num1_r">Number 1</span></b></td>
 			    <td id="tbl_num1x1"></td>
 			    <td id="tbl_num1x2"></td>
@@ -46,6 +51,7 @@
 			    <td id="tbl_num1x4"></td>
 			  </tr>
 			  <tr>
+			  	<!-- 2nd row, 1st column is number from input -->
 			    <td><b><span id="tbl_num2_r">Number 2</span></b></td>
 			    <td id="tbl_num2x1"></td>
 			    <td id="tbl_num2x2"></td>
@@ -53,6 +59,7 @@
 			    <td id="tbl_num2x4"></td>
 			  </tr>
 			  <tr>
+			  	<!-- 3rd row, 1st column is number from input -->
 			    <td><b><span id="tbl_num3_r">Number 3</span></b></td>
 			    <td id="tbl_num3x1"></td>
 			    <td id="tbl_num3x2"></td>
@@ -60,6 +67,7 @@
 			    <td id="tbl_num3x4"></td>
 			  </tr>
 			  <tr>
+			  	<!-- 4th row, 1st column is number from input -->
 			    <td><b><span id="tbl_num4_r">Number 4</span></b></td>
 			    <td id="tbl_num4x1"></td>
 			    <td id="tbl_num4x2"></td>
@@ -75,6 +83,7 @@
 			var num4 = null;
 
 			function submit() {	
+				//check if numbers are characters, if so, log an error and clear form
 				if (isNaN(document.getElementById("num1").value) || 
 					isNaN(document.getElementById("num2").value) ||
 					isNaN(document.getElementById("num3").value) ||
@@ -84,7 +93,7 @@
 					document.getElementById("inputs").reset();
 					return false;
 				}
-
+				//convert string input of numbers to floats for calculations
 				num1 = parseFloat(document.getElementById("num1").value);
 				num2 = parseFloat(document.getElementById("num2").value);
 				num3 = parseFloat(document.getElementById("num3").value);
@@ -93,6 +102,7 @@
 					num1, num2, num3, num4);
 				document.getElementById("inputs").reset();
 
+				//set the header row and header column with the inputted numbers
 				function setHeader() {
 					document.getElementById("tbl_num1_h").innerHTML = num1;
 					document.getElementById("tbl_num1_r").innerHTML = num1;
@@ -107,6 +117,7 @@
 					document.getElementById("tbl_num4_r").innerHTML = num4;
 				}
 				setHeader();
+				//fill in each row in table with the multiplied results of the  numbers in the corresponding header row and header column
 				function setVals() {
 					document.getElementById("tbl_num1x1").innerHTML = num1 * num1;
 					document.getElementById("tbl_num1x2").innerHTML = num1 * num2;
