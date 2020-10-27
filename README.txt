@@ -1,8 +1,4 @@
 Juan Baez
 
-LINK: http://cs.uml.edu/~jbaez/
-
-Boostrap implementation:
--Converted all html elements to be contained within bootstrap rows.
--Applied bootstrap css styling to all elements for column sizing.
--All html pages have been fully converted to a responsive, bootstrap layout. 
+HW5 LINK: https://baezrjuan.github.io/
+Git REPO LINK: https://github.com/baezrjuan/baezrjuan.github.io/tree/master/index_resources/HW5_baezjuan_GUI
