@@ -1,0 +1,27 @@
+
+/*decorate all elements in body*/
+body {
+	font-family:courier;
+	color:white; 
+	text-align: center;
+	background-image: url('../bground.jpg');
+	background-repeat: no-repeat;
+}
+
+#inputs{
+	margin-top: 10%;
+}
+
+#submit {
+	margin: auto;
+}
+
+#tbl {
+	margin: auto;
+	margin-top: 5%;
+}
+td,tr,th {
+	border: 1px solid black;
+	background-color: white;
+	color: black;
+}

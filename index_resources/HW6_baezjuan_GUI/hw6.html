@@ -1,0 +1,194 @@
+<!--
+ File: index_baezrjuan.html
+ 91.461 Assignment: Creating Your First Web Page
+ Juan Baez, UMass Lowell Computer Science, juan_baez@student.uml.edu
+ updated by JB on September 19, 2020
+-->
+
+<!DOCTYPE HTML>
+<html lang="en">
+	<!-- Initialize Page Settings -->
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<title>Juan Baez HW6</title>
+		<!-- include boostrap -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/jquery.validate.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    	<link rel="stylesheet" href="index_resources/css/main.css">
+	</head>
+	<!-- Setup body -->
+	<body>
+		<!-- title text -->
+		<div class="row">
+			<!-- text input form for 4 numbers -->
+			<form id="inputs" name="inputs" class="col-lg-12" onSubmit="formData();">
+				<b><u>Input 4 numbers:</u></b><br><br>
+				<input type="text" id="num1" name="num1" placeholder="Enter 1st number"><br><br>
+				<input type="text" id="num2" name="num2" placeholder="Enter 2nd number"><br><br>
+				<input type="text" id="num3" name="num3" placeholder="Enter 3rd number"><br><br>
+				<input type="text" id="num4" name="num4" placeholder="Enter 4th number"><br><br>
+				 <input id="submit" class="button" type="submit" value="Submit"/>
+			</form>
+			<!-- submit button with onclick functionality -->
+			<!-- <button id="submit" onclick="submit();">Submit</button> -->
+		</div>
+		<div class="row">
+			<!-- init multiplication table -->
+			<table id="tbl" class="col-sm-4">
+			  <tr>
+			  	<!-- row 1 table header to display inputted numbers -->
+			  	<th></th>
+			    <th id="tbl_num1_h">Number 1</th>
+			    <th id="tbl_num2_h">Number 2</th>
+			    <th id="tbl_num3_h">Number 3</th>
+			    <th id="tbl_num4_h">Number 4</th>
+			  </tr>
+			  <tr>
+			  	<!-- 1st row of numbers, 1st column is number from input -->
+			    <td><b><span id="tbl_num1_r">Number 1</span></b></td>
+			    <td id="tbl_num1x1"></td>
+			    <td id="tbl_num1x2"></td>
+			    <td id="tbl_num1x3"></td>
+			    <td id="tbl_num1x4"></td>
+			  </tr>
+			  <tr>
+			  	<!-- 2nd row, 1st column is number from input -->
+			    <td><b><span id="tbl_num2_r">Number 2</span></b></td>
+			    <td id="tbl_num2x1"></td>
+			    <td id="tbl_num2x2"></td>
+			    <td id="tbl_num2x3"></td>
+			    <td id="tbl_num2x4"></td>
+			  </tr>
+			  <tr>
+			  	<!-- 3rd row, 1st column is number from input -->
+			    <td><b><span id="tbl_num3_r">Number 3</span></b></td>
+			    <td id="tbl_num3x1"></td>
+			    <td id="tbl_num3x2"></td>
+			    <td id="tbl_num3x3"></td>
+			    <td id="tbl_num3x4"></td>
+			  </tr>
+			  <tr>
+			  	<!-- 4th row, 1st column is number from input -->
+			    <td><b><span id="tbl_num4_r">Number 4</span></b></td>
+			    <td id="tbl_num4x1"></td>
+			    <td id="tbl_num4x2"></td>
+			    <td id="tbl_num4x3"></td>
+			    <td id="tbl_num4x4"></td>
+			  </tr>
+			</table>
+		</div>
+		<script type="text/javascript">
+			var num1 = null;
+			var num2 = null;
+			var num3 = null;
+			var num4 = null;
+
+			$("#inputs").validate({
+				rules: {
+					num1: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					},
+					num2: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					},
+					num3: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					},
+					num4: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					}
+				}, 
+				messages: {
+					num1: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					},
+					num2: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					},
+					num3: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					},
+					num4: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					}
+				}
+			});
+
+			function formData() {	
+				event.preventDefault();
+
+				if (!$("#inputs").valid()) {
+					console.log("FORM Invalid!");
+					return false;
+				}
+				
+				//convert string input of numbers to floats for calculations
+				num1 = parseFloat(document.getElementById("num1").value);
+				num2 = parseFloat(document.getElementById("num2").value);
+				num3 = parseFloat(document.getElementById("num3").value);
+				num4 = parseFloat(document.getElementById("num4").value);
+				console.log("Numbers: ", 
+					num1, num2, num3, num4);
+
+				//set the header row and header column with the inputted numbers
+				function setHeader() {
+					document.getElementById("tbl_num1_h").innerHTML = num1;
+					document.getElementById("tbl_num1_r").innerHTML = num1;
+
+					document.getElementById("tbl_num2_h").innerHTML = num2;
+					document.getElementById("tbl_num2_r").innerHTML = num2;
+
+					document.getElementById("tbl_num3_h").innerHTML = num3;
+					document.getElementById("tbl_num3_r").innerHTML = num3;
+
+					document.getElementById("tbl_num4_h").innerHTML = num4;
+					document.getElementById("tbl_num4_r").innerHTML = num4;
+				}
+				setHeader();
+				//fill in each row in table with the multiplied results of the  numbers in the corresponding header row and header column
+				function setVals() {
+					document.getElementById("tbl_num1x1").innerHTML = num1 * num1;
+					document.getElementById("tbl_num1x2").innerHTML = num1 * num2;
+					document.getElementById("tbl_num1x3").innerHTML = num1 * num3;
+					document.getElementById("tbl_num1x4").innerHTML = num1 * num4;
+
+					document.getElementById("tbl_num2x1").innerHTML = num2 * num1;
+					document.getElementById("tbl_num2x2").innerHTML = num2 * num2;
+					document.getElementById("tbl_num2x3").innerHTML = num2 * num3;
+					document.getElementById("tbl_num2x4").innerHTML = num2 * num4;
+
+					document.getElementById("tbl_num3x1").innerHTML = num3 * num1;
+					document.getElementById("tbl_num3x2").innerHTML = num3 * num2;
+					document.getElementById("tbl_num3x3").innerHTML = num3 * num3;
+					document.getElementById("tbl_num3x4").innerHTML = num3 * num4;
+
+					document.getElementById("tbl_num4x1").innerHTML = num4 * num1;
+					document.getElementById("tbl_num4x2").innerHTML = num4 * num2;
+					document.getElementById("tbl_num4x3").innerHTML = num4 * num3;
+					document.getElementById("tbl_num4x4").innerHTML = num4 * num4;
+				}
+				setVals();		
+			}
+		</script>
+	</body>
+</html>	
