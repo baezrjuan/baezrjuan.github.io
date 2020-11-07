@@ -33,8 +33,6 @@
 				<input type="text" id="num4" name="num4" placeholder="Enter 4th number"><br><br>
 				 <input id="submit" class="button" type="submit" value="Submit"/>
 			</form>
-			<!-- submit button with onclick functionality -->
-			<!-- <button id="submit" onclick="submit();">Submit</button> -->
 		</div>
 		<div class="row">
 			<!-- init multiplication table -->
@@ -87,6 +85,10 @@
 			var num3 = null;
 			var num4 = null;
 
+			// validater for input in the form named "inputs". For each number, it is set as required required: true,
+			//  it must be a number (number: true), and the number must be within -50 to 50 (range: [-50, 50]). Each input has 
+			//  error messages setup which is seen below in the "messages" section of the validater object. Each rule has a
+			//  corresponding message, for example, "required" says "Please enter a number!" styled in bold with the color red.
 			$("#inputs").validate({
 				rules: {
 					num1: {
@@ -133,7 +135,8 @@
 					}
 				}
 			});
-
+			//on submit for the form "inputs", prevent page reset by preventDefault(), and check if form is valid. If not, return. 
+			// If the form is valid, continue into the calculations phase to fill in the multiplication table. 
 			function formData() {	
 				event.preventDefault();
 
