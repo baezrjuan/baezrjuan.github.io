@@ -1,0 +1,392 @@
+<!--
+ File: index_baezrjuan.html
+ 91.461 Assignment: Creating Your First Web Page
+ Juan Baez, UMass Lowell Computer Science, juan_baez@student.uml.edu
+ updated by JB on September 19, 2020
+-->
+
+<!DOCTYPE HTML>
+<html lang="en">
+	<!-- Initialize Page Settings -->
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<title>Juan Baez HW7</title>
+		<!-- include boostrap -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/jquery.validate.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    	<link rel="stylesheet" href="index_resources/css/main.css">
+    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	</head>
+	<!-- Setup body -->
+	<body>
+		<!-- title text -->
+		<div id="tabs">
+			<ul id="tabs-ul" style="background-image: url('index_resources/bground.jpg'); border-color: black;">
+				<li><a id="tabs-1-li" href="#tabs-1" onclick="DisablePrevTab();EnableCurrentTab(this.id);">Table 1:</a></li>
+			</ul>
+			<div id="tabs-1" class="tab">
+				<div class="row">
+					<!-- text input form for 4 numbers -->
+					<form id="inputs" name="inputs" class="col-lg-12" onSubmit="formData();">
+						<b><u>Input 4 numbers:</u></b><br><br>
+						<input type="text" id="num1" name="num1" placeholder="Enter 1st number" onInput="keypress(this.parentNode.parentNode.parentNode.id)"><br><br>
+						<div id="slider1" class="slider"></div><br><br>
+						<input type="text" id="num2" name="num2" placeholder="Enter 2nd number" onInput="keypress(this.parentNode.parentNode.parentNode.id)";><br><br>
+						<div id="slider2" class="slider"></div><br><br>
+						<input type="text" id="num3" name="num3" placeholder="Enter 3rd number" onInput="keypress(this.parentNode.parentNode.parentNode.id)";><br><br>
+						<div id="slider3" class="slider"></div><br><br>
+						<input type="text" id="num4" name="num4" placeholder="Enter 4th number" onInput="keypress(this.parentNode.parentNode.parentNode.id)";><br><br>
+						<div id="slider4" class="slider"></div><br><br>
+						 <input id="submit" class="button" type="submit" value="Submit"/>
+						 <input id="tab" class="button" type="button" value="Open New Tab" onclick="new_tab()" /><br><br>
+						 <input id="delete" type="text" style="width:300px" placeholder="Enter table numbers to delete e.g. 1,2"/>
+						 <input id="delete_button" class="button" type="button" value="Delete" onclick="delete_tab()" />
+					</form>
+				</div>
+				<div class="row">
+					<!-- init multiplication table -->
+					<table id="tbl" class="col-sm-4">
+					  <tr>
+					  	<!-- row 1 table header to display inputted numbers -->
+					  	<th></th>
+					    <th id="tbl_num1_h">Number 1</th>
+					    <th id="tbl_num2_h">Number 2</th>
+					    <th id="tbl_num3_h">Number 3</th>
+					    <th id="tbl_num4_h">Number 4</th>
+					  </tr>
+					  <tr>
+					  	<!-- 1st row of numbers, 1st column is number from input -->
+					    <td><b><span id="tbl_num1_r">Number 1</span></b></td>
+					    <td id="tbl_num1x1"></td>
+					    <td id="tbl_num1x2"></td>
+					    <td id="tbl_num1x3"></td>
+					    <td id="tbl_num1x4"></td>
+					  </tr>
+					  <tr>
+					  	<!-- 2nd row, 1st column is number from input -->
+					    <td><b><span id="tbl_num2_r">Number 2</span></b></td>
+					    <td id="tbl_num2x1"></td>
+					    <td id="tbl_num2x2"></td>
+					    <td id="tbl_num2x3"></td>
+					    <td id="tbl_num2x4"></td>
+					  </tr>
+					  <tr>
+					  	<!-- 3rd row, 1st column is number from input -->
+					    <td><b><span id="tbl_num3_r">Number 3</span></b></td>
+					    <td id="tbl_num3x1"></td>
+					    <td id="tbl_num3x2"></td>
+					    <td id="tbl_num3x3"></td>
+					    <td id="tbl_num3x4"></td>
+					  </tr>
+					  <tr>
+					  	<!-- 4th row, 1st column is number from input -->
+					    <td><b><span id="tbl_num4_r">Number 4</span></b></td>
+					    <td id="tbl_num4x1"></td>
+					    <td id="tbl_num4x2"></td>
+					    <td id="tbl_num4x3"></td>
+					    <td id="tbl_num4x4"></td>
+					  </tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var num1 = "";
+			var num2 = "";
+			var num3 = "";
+			var num4 = "";
+
+			var tabs_open = 1;
+			$( "#tabs" ).tabs();
+
+			var default_tab = document.getElementById("tabs-1").cloneNode(true); //get original tab for later duplication before it gets modified with input
+
+			function EnableCurrentTab(id) {
+				console.log("Current Tab ", id);
+				var current_tab = id.replace("-li", "");
+				console.log(current_tab.toString()+" enabled");
+
+				document.getElementById(current_tab).getElementsByTagName("form")[0].id = "inputs_active";
+
+				var tab_inputs = document.getElementById(current_tab).getElementsByTagName("input");
+				console.log("tab_inputs", tab_inputs[0]);
+				for (var i = 0; i < tab_inputs.length; i++) {
+					tab_inputs[i].id += "_active";
+					tab_inputs[i].name += "_active";
+				}
+
+				var tab_sliders = document.getElementById(current_tab).getElementsByClassName("slider");
+				console.log("tab_sliders", tab_sliders[0]);
+				for (var i = 0; i < tab_sliders.length; i++) {
+					tab_sliders[i].id += "_active";
+				}
+
+				var tab_table_headers = document.getElementById(current_tab).getElementsByTagName("th");
+				console.log("tab_table_headers", tab_table_headers[0]);
+				for (var i = 0; i < tab_table_headers.length; i++) {
+					tab_table_headers[i].id += "_active";
+				}
+				var tab_table = document.getElementById(current_tab).getElementsByTagName("td");
+				console.log("tab_table", tab_table[0]);
+				for (var i = 0; i < tab_table.length; i++) {
+					tab_table[i].id += "_active"; 
+				}
+				var tab_table = document.getElementById(current_tab).getElementsByTagName("span");
+				console.log("tab_table", tab_table[0]);
+				for (var i = 0; i < tab_table.length; i++) {
+					tab_table[i].id += "_active"; 
+				}
+				
+				sliders();
+
+				$("#inputs_active").validate({
+				rules: {
+					num1_active: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					},
+					num2_active: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					},
+					num3_active: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					},
+					num4_active: {
+						required: true,
+						number: true,
+						range: [-50, 50]
+					}
+				}, 
+				messages: {
+					num1_active: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					},
+					num2_active: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					},
+					num3_active: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					},
+					num4_active: {
+						required: "<b style='color:#FF4500;'>Please enter a number!</b>",
+						number: "<b style='color:#FF4500;'>Please enter a correct number value!</b>",
+						range: "<b style='color:#FF4500;'>Enter a number between -50 and 50!</b>"
+					}
+				}
+			});
+			}
+			EnableCurrentTab("tabs-1-li");
+
+			function DisablePrevTab(tab) {
+				//disable previous inputs
+
+				var prev_tab = "tabs-" + ($("#tabs").tabs('option', 'active') + 1).toString();
+				if (tab){
+					prev_tab = "tabs-" + tab;
+				}
+				console.log("prev_tab", prev_tab);
+				document.getElementById(prev_tab).getElementsByTagName("form")[0].id = "inputs";
+				var tab_inputs = document.getElementById(prev_tab).getElementsByTagName("input");
+				console.log("tab_inputs", tab_inputs[0]);
+				for (var i = 0; i < tab_inputs.length; i++) {
+					tab_inputs[i].id = tab_inputs[i].id.replace("_active", "");
+					tab_inputs[i].name = tab_inputs[i].name.replace("_active", "");
+				}
+				console.log("tab_inputs", tab_inputs[0]);
+
+				var tab_sliders = document.getElementById(prev_tab).getElementsByClassName("slider");
+				console.log("tab_sliders", tab_sliders[0]);
+				for (var i = 0; i < tab_sliders.length; i++) {
+					tab_sliders[i].id = tab_sliders[i].id.replace("_active", "");
+				}
+
+				var tab_table_headers = document.getElementById(prev_tab).getElementsByTagName("th");
+				console.log("tab_table_headers", tab_table_headers[0]);
+				for (var i = 0; i < tab_table_headers.length; i++) {
+					tab_table_headers[i].id = tab_table_headers[i].id.replace("_active", "");
+				}
+				var tab_table = document.getElementById(prev_tab).getElementsByTagName("td");
+				console.log("tab_table", tab_table[0]);
+				for (var i = 0; i < tab_table.length; i++) {
+					tab_table[i].id = tab_table[i].id.replace("_active", "");
+				}
+				var tab_table = document.getElementById(prev_tab).getElementsByTagName("span");
+				console.log("tab_table", tab_table[0]);
+				for (var i = 0; i < tab_table.length; i++) {
+					tab_table[i].id = tab_table[i].id.replace("_active", "");
+				}
+			}
+
+			function sliders() {
+
+				$( "#slider1_active" ).slider();
+				$("#slider1_active").slider("option", "value", 0)
+				$( "#slider1_active" ).slider("option", "min", -50);
+				$( "#slider1_active" ).slider("option", "max", 50);
+				$( "#slider1_active" ).on("slide", function(event, ui){
+					$( "#num1_active" ).val(ui.value);
+					var current_tab = $("#tabs").tabs('option', 'active');
+					console.log(ui.value);
+					keypress("tabs-" + (current_tab+1).toString());
+				});
+				document.getElementById("num1_active").onchange = function () {
+					console.log(this.value);
+					$("#slider1_active").slider("option", "value", this.value)
+				};
+
+				$( "#slider2_active" ).slider();
+				$("#slider2_active").slider("option", "value", 0)
+				$( "#slider2_active" ).slider("option", "min", -50);
+				$( "#slider2_active" ).slider("option", "max", 50);
+				$( "#slider2_active" ).on("slide", function(event, ui){
+					$( "#num2_active" ).val(ui.value);
+					var current_tab = $("#tabs").tabs('option', 'active');
+					console.log(ui.value);
+					keypress("tabs-" + (current_tab+1).toString());
+				});
+				document.getElementById("num2_active").onchange = function () {
+					console.log(this.value);
+					$("#slider2_active").slider("option", "value", this.value)
+				};
+
+				$( "#slider3_active" ).slider();
+				$("#slider3_active").slider("option", "value", 0)
+				$( "#slider3_active" ).slider("option", "min", -50);
+				$( "#slider3_active" ).slider("option", "max", 50);
+				$( "#slider3_active" ).on("slide", function(event, ui){
+					$( "#num3_active" ).val(ui.value);
+					var current_tab = $("#tabs").tabs('option', 'active');
+					console.log(ui.value);
+					keypress("tabs-" + (current_tab+1).toString());
+				});
+				document.getElementById("num3_active").onchange = function () {
+					console.log(this.value);
+					$("#slider3_active").slider("option", "value", this.value)
+				};
+
+				$( "#slider4_active" ).slider();
+				$("#slider4_active").slider("option", "value", 0)
+				$( "#slider4_active" ).slider("option", "min", -50);
+				$( "#slider4_active" ).slider("option", "max", 50);
+				$( "#slider4_active" ).on("slide", function(event, ui){
+					$( "#num4_active" ).val(ui.value);
+					var current_tab = $("#tabs").tabs('option', 'active');
+					console.log(ui.value);
+					keypress("tabs-" + (current_tab+1).toString());
+				});
+				document.getElementById("num4_active").onchange = function () {
+					console.log(this.value);
+					$("#slider4_active").slider("option", "value", this.value)
+				};
+			}
+
+			function delete_tab(){
+				var tab_nums = document.getElementById("delete_active").value.split(",");
+				for (var i = 0; i < tab_nums.length; i++) {
+					console.log("TAB", "tabs-"+tab_nums[i]+"-li");
+					DisablePrevTab(tab_nums[i]);
+					document.getElementById("tabs-"+tab_nums[i]+"-li").remove(); 
+					document.getElementById("tabs-"+tab_nums[i]).remove(); 
+				}
+				$("#tabs").tabs("refresh");
+			}
+
+
+			// validater for input in the form named "inputs". For each number, it is set as required required: true,
+			//  it must be a number (number: true), and the number must be within -50 to 50 (range: [-50, 50]). Each input has 
+			//  error messages setup which is seen below in the "messages" section of the validater object. Each rule has a
+			//  corresponding message, for example, "required" says "Please enter a number!" styled in bold with the color red.
+			function keypress(id) {
+				document.getElementById(id+"-li").innerHTML = "Table " + id.split("-")[1] + ": " + document.getElementById("num1_active").value + " " + document.getElementById("num2_active").value + " " + document.getElementById("num3_active").value + " " + document.getElementById("num4_active").value;
+				$("#tabs").tabs("refresh");
+
+			};
+			//on submit for the form "inputs", prevent page reset by preventDefault(), and check if form is valid. If not, return. 
+			// If the form is valid, continue into the calculations phase to fill in the multiplication table. 
+			function formData() {	
+				event.preventDefault();
+
+				if (!$("#inputs_active").valid()) {
+					console.log("FORM Invalid!");
+					return false;
+				}
+				
+				//convert string input of numbers to floats for calculations
+				num1 = parseFloat(document.getElementById("num1_active").value);
+				num2 = parseFloat(document.getElementById("num2_active").value);
+				num3 = parseFloat(document.getElementById("num3_active").value);
+				num4 = parseFloat(document.getElementById("num4_active").value);
+				console.log("Numbers: ", 
+					num1, num2, num3, num4);
+
+				//set the header row and header column with the inputted numbers
+				function setHeader() {
+					document.getElementById("tbl_num1_h_active").innerHTML = num1;
+					document.getElementById("tbl_num1_r_active").innerHTML = num1;
+
+					document.getElementById("tbl_num2_h_active").innerHTML = num2;
+					document.getElementById("tbl_num2_r_active").innerHTML = num2;
+
+					document.getElementById("tbl_num3_h_active").innerHTML = num3;
+					document.getElementById("tbl_num3_r_active").innerHTML = num3;
+
+					document.getElementById("tbl_num4_h_active").innerHTML = num4;
+					document.getElementById("tbl_num4_r_active").innerHTML = num4;
+				}
+				setHeader();
+				//fill in each row in table with the multiplied results of the  numbers in the corresponding header row and header column
+				function setVals() {
+					document.getElementById("tbl_num1x1_active").innerHTML = num1 * num1;
+					document.getElementById("tbl_num1x2_active").innerHTML = num1 * num2;
+					document.getElementById("tbl_num1x3_active").innerHTML = num1 * num3;
+					document.getElementById("tbl_num1x4_active").innerHTML = num1 * num4;
+
+					document.getElementById("tbl_num2x1_active").innerHTML = num2 * num1;
+					document.getElementById("tbl_num2x2_active").innerHTML = num2 * num2;
+					document.getElementById("tbl_num2x3_active").innerHTML = num2 * num3;
+					document.getElementById("tbl_num2x4_active").innerHTML = num2 * num4;
+
+					document.getElementById("tbl_num3x1_active").innerHTML = num3 * num1;
+					document.getElementById("tbl_num3x2_active").innerHTML = num3 * num2;
+					document.getElementById("tbl_num3x3_active").innerHTML = num3 * num3;
+					document.getElementById("tbl_num3x4_active").innerHTML = num3 * num4;
+
+					document.getElementById("tbl_num4x1_active").innerHTML = num4 * num1;
+					document.getElementById("tbl_num4x2_active").innerHTML = num4 * num2;
+					document.getElementById("tbl_num4x3_active").innerHTML = num4 * num3;
+					document.getElementById("tbl_num4x4_active").innerHTML = num4 * num4;
+				}
+				setVals();	
+			}
+
+			function new_tab() {
+				tabs_open++;
+    			var copy = default_tab.cloneNode(true);
+    			copy.id = "tabs-"+tabs_open.toString();
+    			document.getElementById("tabs").appendChild(copy);
+
+    			var li = document.createElement('li');
+    			li.onclick = "EnableCurrentTab()";
+    			li.innerHTML = `<a id="tabs-`+tabs_open.toString()+`-li" href="#tabs-`+tabs_open.toString()+`"" onclick="DisablePrevTab();EnableCurrentTab(id);">Table `+tabs_open.toString()+`:</a>`;
+    			document.getElementById("tabs-ul").appendChild(li);
+    			$("#tabs").tabs("refresh");
+    		}
+		</script>
+	</body>
+</html>	
