@@ -1,0 +1,54 @@
+<!--
+ 91.461 Assignment: Scrabble hw8
+ Juan Baez, UMass Lowell Computer Science, juan_baez@student.uml.edu
+-->
+
+<!DOCTYPE HTML>
+<html lang="en">
+	<!-- Initialize Page Settings -->
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<title>Juan Baez HW8</title>
+		<!-- include boostrap -->
+		<script type="text/javascript" src="js/scrabble.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/jquery.validate.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    	<link rel="stylesheet" href="scrabble.css">
+    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	</head>
+	<!-- Setup body -->
+	<body>
+		<div id="dict_words_div">
+			WANT TO PLAY WITH REAL WORDS?<br> Upload the <u><i>words.txt</i></u> file from the project directory!<br>
+			<input type="file" id="dict_words" name="dict_words" value= "words.txt" accept="text/plain">
+		</div>
+		<div id="score">SCORE: 0</div>
+		<div id="error" style="color:yellow">Drag-and-drop tiles onto the board spaces!</div>
+		<img id="slots_img" src="img/Scrabble_Board_OneLine.png" alt="scrabble board">
+		<div id="slots"></div>
+		<div id="tilerack"></div>
+		<div id="tiles"></div>
+		<input type="button" name="draw" id="draw" value="DRAW NEW RACK" onclick="drawNewTiles()">
+		<input type="button" name="submit" id="submit" value="SUBMIT WORD" onclick="submit()">
+		<input type="button" name="reset" id="reset" value="RESET GAME" onclick="reset()">
+	</body>
+	<script type="text/javascript">
+		window.onload = function () {
+			initTiles();             
+			var fr=new FileReader(); 
+			document.getElementById('dict_words').addEventListener('change', function() {
+			    var fr=new FileReader(); 
+			    fr.onload=function(){ 
+			        var words = fr.result.split('\n');
+			        setDictionary(words);
+			    }  
+			    fr.readAsText(this.files[0]); 
+			}); 
+		}
+	</script>
+</html>
