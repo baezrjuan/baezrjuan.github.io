@@ -2,7 +2,7 @@ HW8 README
 Juan Baez
 GUI fall2020
 
-HW8 LINK: https://baezrjuan.github.io/index_resources/HW8_baezjuan_GUI/hw8.html
+HW8 LINK: https://baezrjuan.github.io/index_resources/HW8_baezjuan_GUI/scrabble.html
 Git REPO LINK: https://github.com/baezrjuan/baezrjuan.github.io/tree/master/index_resources/HW8_baezjuan_GUI
 
 FEATURES:
